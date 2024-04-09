@@ -5,7 +5,7 @@ skin rose
   title NRF52840-Brushed-Motor-Controller-HostApp
 
   node "HostApp - Desktop Serial" {
-  package Frontend{
+  package Frontend {
     class MainWindow {
       - uint? TechnologyIndex
       - List<CallbackInterface> BackendImplementations
@@ -160,5 +160,18 @@ skin rose
     }
   }
 }
+
+CallbackBT <|-- CallbackInterface
+CallbackSerialShell <|-- CallbackInterface
+CallbackInterface  *--  ControlModes_Cs
+CallbackInterface  *--  MotorDirection_Cs
+CallbackInterface  *--  DriverException
+
+CallbackSerialShell  *--  SerialDriverConnection
+
+MainWindow  *--  CallbackInterface
+MainWindow  *--  GeneralSettings
+MainWindow  *--  InitOptions
+MainWindow  *--  ConnectionOptions
 
 @enduml
